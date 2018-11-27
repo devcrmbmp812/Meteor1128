@@ -1,0 +1,68 @@
+<template name="CustomerListings">
+	<div id="data_view" class="">
+		<h2 id="component-title">
+			Business Listings
+		</h2>
+		{{#if isNotEmpty}}
+		<div id="dataview-data">
+			{{#if viewAsTable}} {{> CustomerListingsViewTable}} {{/if}}
+		</div>
+		{{else}}
+		<div class="alert alert-info">
+			No listings yet
+		</div>
+		{{/if}}
+	</div>
+</template>
+
+<template name="CustomerListingsViewTable">
+	<table id="dataview-table" class="table table-striped">
+		<thead id="dataview-table-header">
+			<tr id="dataview-table-header-row">
+				<th class="th-sortable" data-sort="company_name">
+					Company Name
+				</th>
+				<th>
+					Status
+				</th>
+				<th>
+					Expiration Date
+				</th>
+				<th>
+					&nbsp;
+				</th>
+				<th>
+					&nbsp;
+				</th>
+			</tr>
+		</thead>
+		<tbody id="dataview-table-items">
+			{{#each tableItems}} {{> CustomerListingsViewTableItems}} {{/each}}
+		</tbody>
+	</table>
+</template>
+
+<template name="CustomerListingsViewTableItems">
+	<tr id="dataview-table-items-row">
+		<td>
+			{{company_name}}
+		</td>
+		<td>
+			{{status}}
+		</td>
+		<td>
+			{{expirationDate}}
+		</td>
+
+		<td class="td-icon">
+			<span id="edit-button" class="fa fa-pencil {{editButtonClass}}" title="Edit">
+			</span>
+		</td>
+		<td class="td-icon">
+			<span id="delete-button" class="fa fa-trash-o {{deleteButtonClass}}" title="Delete">
+			</span>
+		</td>
+	</tr>
+</template>
+
+

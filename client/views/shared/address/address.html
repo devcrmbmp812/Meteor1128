@@ -1,0 +1,52 @@
+<template name="AddressListingsViewTable">
+	{{#if isNotEmpty}}
+	<table id="dataview-table" class="table table-striped">
+		<thead id="dataview-table-header">
+			<tr id="dataview-table-header-row">
+				<th class="th-sortable" data-sort="company_name">
+					Address
+				</th>
+				<th>
+					State
+				</th>
+				<th>
+					Postcode
+				</th>
+				<th>
+					&nbsp;
+				</th>
+				<th>
+					&nbsp;
+				</th>
+			</tr>
+		</thead>
+		<tbody id="dataview-table-items">
+			{{#each getArray}} {{> AddressListingsViewTableItems}} {{/each}}
+		</tbody>
+	</table>
+	{{/if}}
+</template>
+
+<template name="AddressListingsViewTableItems">
+	<tr id="dataview-table-items-row" data-value="{{index}}">
+		<td>
+			{{value.address}} {{value.address_2}}
+		</td>
+		<td>
+			{{value.state}}
+		</td>
+		<td>
+			{{value.postcode}}
+		</td>
+		<td class="td-icon">
+			<i class="fa fa-pencil {{editButtonClass}} edit-button" title="Edit">
+			</i>
+		</td>
+		<td class="td-icon">
+			<i class="fa fa-trash-o {{deleteButtonClass}} delete-button" title="Delete">
+			</i>
+		</td>
+	</tr>
+</template>
+
+

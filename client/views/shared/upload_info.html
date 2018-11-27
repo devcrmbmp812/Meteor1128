@@ -1,0 +1,13 @@
+<template name="uploadedInfo">
+    <div class="documentList">
+        <ul class="list-inline">
+            {{#each this}}
+                <li class="documentItem">
+                    <a href="{{imageUrl}}/{{path}}"><img src="{{imageUrl}}/{{path}}"></a><br/>
+                    <label>{{ name }}</label> <br/>
+                    <a class="btn btn-danger deleteUpload">Delete</a>
+                </li>
+            {{/each}}
+        </ul>
+    </div>
+</template>

@@ -1,0 +1,47 @@
+<template name="modalLogin">
+  <div class="modal fade">
+      <div class="modal-dialog" style="width:900px;">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h4 class="modal-title"></h4>
+              </div>
+
+              <div class="modal-body">
+					<div class="container">
+						<form id="login_form" class="account-form" role="form">
+							<h2>
+								Please sign in
+							</h2>
+							{{#if errorMessage}}
+							<div class="alert alert-warning">
+								{{errorMessage}}
+							</div>
+							{{/if}}
+							<div id="login-with-password" style="padding-top: 10px;">
+								<input id="login_email" type="text" class="form-control" placeholder="Email address" required autofocus>
+								<input id="login_password" type="password" class="form-control" placeholder="Password" required>
+								<button class="btn btn-info btn-block" type="submit" data-loading-text="Please wait...">
+									Sign in
+								</button>
+								<p class="account-form-text-after" id="register-link">
+									Not a member?
+									<a href="#register" id="register">
+										Register here
+									</a>
+								</p>
+								<p class="account-form-text-after" id="forgot-password-link">
+									Forgot password?
+									<a href="#forgot-password" id="forgot-password">
+										Click here
+									</a>
+								</p>
+							</div>
+						</form>
+					</div>
+	            </div>
+              <div class="modal-footer">
+              </div>
+          </div>
+      </div>
+  </div>
+</template>

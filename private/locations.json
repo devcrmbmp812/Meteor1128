@@ -1,0 +1,150 @@
+[
+    {
+        "regions": [
+            "Blue Mountains",
+            "Central Coast",
+            "Central West",
+            "Greater Western Sydney",
+            "Far South Coast",
+            "Far West",
+            "The Hunter (Newcastle)",
+            "Illawarra (Wollongong)",
+            "Lord Howe Island",
+            "New England (north-west)",
+            "Murray",
+            "Mid North Coast",
+            "North West Slopes",
+            "Northern Rivers",
+            "Northern Tablelands",
+            "Orana",
+            "Riverina",
+            "Sapphire Coast",
+            "Snowy Mountains",
+            "South Coast",
+            "Southern Highlands",
+            "Southern Tablelands",
+            "South West Slopes",
+            "Sunraysia",
+            "Sydney"
+        ],
+        "state": "New South Wales"
+    },
+    {
+        "regions": [
+            "Arnhem Land",
+            "Barkly Tableland",
+            "Central Australia",
+            "Katherine Region",
+            "Top End"
+        ],
+        "state": "Northern Territory"
+    },
+    {
+        "regions": [
+            "Channel Country",
+            "Capricorn Coast",
+            "Darling Downs",
+            "Far North Queensland",
+            "Gulf Country",
+            "Torres Strait Islands",
+            "Whitsunday",
+            "Brisbane",
+            "Gold Coast",
+            "Sunshine Coast",
+            "West Moreton",
+            "South Burnett"
+        ],
+        "state": "Queensland"
+    },
+    {
+        "regions": [
+            "Adelaide Plains",
+            "Adelaide Hills/Mount Lofty Ranges",
+            "Barossa Valley",
+            "Copper Triangle",
+            "Eyre Peninsula",
+            "Far North",
+            "Fleurieu Peninsula",
+            "Flinders Ranges",
+            "Kangaroo Island",
+            "Limestone Coast",
+            "Mid North",
+            "Murraylands",
+            "Riverland",
+            "Yorke Peninsula"
+        ],
+        "state": "South Australia"
+    },
+    {
+        "regions": [
+            "Central Highlands",
+            "Midlands",
+            "West Coast",
+            "Hobart"
+        ],
+        "state": "Tasmania"
+    },
+    {
+        "regions": [
+            "Yarra Valley",
+            "Upper Yarra",
+            "Greater Melbourne",
+            "Port Phillip",
+            "Mornington Peninsula",
+            "Bellarine Peninsula",
+            "Western Port",
+            "Spa Country",
+            "Bass Coast",
+            "Upper Goulburn",
+            "Central Murray",
+            "Lower Goulburn",
+            "Southern Riverina",
+            "Victorian Alps",
+            "Upper Murray",
+            "High Country",
+            "East Gippsland",
+            "West Gippsland",
+            "South Gippsland",
+            "Central Gippsland",
+            "Gippsland Lakes",
+            "Central Gippsland Coast",
+            "East Gippsland Coast",
+            "Victorian Alps",
+            "Central Highlands/Tablelands",
+            "Pyrenees",
+            "The Grampians",
+            "The Otways",
+            "West Coast",
+            "Shipwreck Coast",
+            "Great Ocean Road",
+            "Surf Coast",
+            "The Mallee",
+            "Sunraysia",
+            "The Wimmera"
+        ],
+        "state": "Victoria"
+    },
+    {
+        "regions": [
+            "Gascoyne",
+            "Goldfields-Esperance",
+            "Great Southern",
+            "Kimberley",
+            "Mid West",
+            "Peel",
+            "Perth",
+            "Pilbara",
+            "South West",
+            "Wheatbelt",
+            "Christmas Island",
+            "Cocos (Keeling) Islands"
+        ],
+        "state": "Western Australia"
+    },
+    {
+        "regions": [
+            "Canberra"
+        ],
+        "state": "Australian Capital Territory"
+    }
+]

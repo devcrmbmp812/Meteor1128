@@ -1,0 +1,386 @@
+<template name="UserListingsEdit">
+    <div class="container">
+        <div class="row">
+          <form id="form" role="form">
+            <!--      Wizard container        -->
+            <div class="wizard-container">
+                <div class="card wizard-card ct-wizard-azzure" id="wizard">
+
+                <!--        You can switch "ct-wizard-azzure"  with one of the next bright colors: "ct-wizard-blue", "ct-wizard-green", "ct-wizard-orange", "ct-wizard-red"             -->
+
+                    	<div class="wizard-header">
+                        	<h3>
+                        	   <b>EDIT</b> YOUR BUSINESS LISTING <br>
+                        	   <small>Please provide the details of your business and the services that you provide.</small>
+                        	</h3>
+                    	</div>
+                    	 <ul>
+                            <li><a href="#details" data-toggle="tab">Company Info</a></li>
+                            <li><a href="#types" data-toggle="tab">Category</a></li>
+                            <li><a href="#industry" data-toggle="tab">Sectors Serviced</a></li>
+                            <!-- li><a href="#industry_sub_sector" data-toggle="tab">Sub Sector Serviced</a></li -->
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane" id="details">
+                              <div class="row">
+                                  <div class="col-sm-12">
+                                    <h4 class="info-text"> Let's start with the basic details</h4>
+                                  </div>
+                                  <div class="col-sm-5 col-sm-offset-1">
+                                      <div class="form-group">
+                                        <label for="company_name">
+                                          Company Name
+                                        </label>
+                                          <input type="text" name="company_name" class="tab_2 form-control" data-type="string" value="{{edit_listing.company_name}}">
+                                          <span id="help-text" class="help-block">
+                                          </span>
+                                          <span id="error-text" class="help-block error">
+                                          </span>
+                                      <div id="company_name_validate"></div>
+                                      </div>
+                                  </div>
+                                  <div class="col-sm-5">
+                                      <div class="form-group">
+                                        <label>Which states do you service?</label>
+                                        <div class="">
+                                          <select id="areas_serviced" class="tab_2" multiple="multiple" name="areas_serviced" data-type="string">
+                                            {{#each locations}}
+												<option value="{{state}}" selected="{{selectedMultiple ../edit_listing.areas_serviced state}}">
+												{{state}}
+												</option>
+                                            {{/each}}
+                                        </select>
+                                        <div id="areas_serviced_validate"></div>
+                                      </div>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-sm-10 col-sm-offset-1">
+                                    <div class="form-group">
+                                    <label for="regions">
+                                      Regions Serviced
+                                    </label>
+                                    &nbsp;
+                                    <input type="checkbox" id="checkbox" > Select All Locations
+                                        <div class="">
+                                          <select id="regions" class="tab_2" multiple="multiple" name="regions" data-type="string">
+
+                                            {{#each locations}}
+                                              <optgroup label="{{state}}">
+                                                {{#each regions}}
+                                                  <option value="{{this}}" selected="{{selectedMultiple ../../edit_listing.regions this}}">
+                                                    {{this}}
+                                                  </option>
+                                                {{/each}}
+                                              </optgroup>
+                                            {{/each}}
+                                        </select>
+                                        <div id="regions_validate"></div>
+                                        </div>
+                                      </div>
+                                  </div>
+                               </div>
+                              {{#if isConsultant edit_listing.type}}
+                              <div class="row">
+                                  <div class="col-sm-10 col-sm-offset-1">
+                                    <div class="form-group">
+                                    <label for="project_team_location">
+                                      Office Locations
+                                    </label>
+                                    &nbsp;
+                                    <input type="checkbox" id="checkboxLoc" > Select All Locations
+                                        <div class="">
+                                          <select id="project_team_location" class="tab_2" multiple="multiple" name="project_team_location" data-type="string">
+                                            {{#each project_team_location}}
+                                              <option value="{{name}}" selected="{{selectedMultiple ../edit_listing.project_team_location name}}">
+                                              {{name}}
+                                              </option>
+                                            {{/each}}
+                                        </select>
+                                        <div id="project_team_location_validate"></div>
+                                        </div>
+                                      </div>
+                                  </div>
+                               </div>
+                              {{/if}}
+                              <div class="row">
+                                  <div class="col-sm-5 col-sm-offset-1">
+                                      <div class="form-group">
+                                          <label>Minimum Project Size</label>
+                      										<select class="tab_2 form-control" name="minimum_project_value" data-type="string">
+                      											{{#each project_value}}
+																<option value="{{value}}" selected="{{selected ../edit_listing.minimum_project_value value}}">
+																	{{name}}
+																</option>
+                      											{{/each}}
+                      										</select>
+                      										<span id="help-text" class="help-block">
+                      										</span>
+                      										<span id="error-text" class="help-block">
+                      										</span>
+                                      </div>
+                                  </div>
+                                  <div class="col-sm-5">
+                                      <div class="form-group">
+                                          <label>Maximum Project Size</label>
+                      										<select class="tab_2 form-control" name="maximum_project_value" data-type="string">
+                      											{{#each project_value}}
+																<option value="{{value}}" selected="{{selected ../edit_listing.maximum_project_value value}}">
+																	{{name}}
+																</option>
+                      											{{/each}}
+                      										</select>
+                      										<span id="help-text" class="help-block">
+                      										</span>
+                      										<span id="error-text" class="help-block">
+                      										</span>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-sm-5 col-sm-offset-1">
+                                      <div class="form-group">
+                                          <label>ACN / ABN</label>
+                                          <input type="text" name="acn_abn" value="{{edit_listing.acn_abn}}" class="tab_2 form-control" data-type="string">
+                                          <div id="acn_abn_validate"></div>
+                                      </div>
+                                  </div>
+                                  <div class="col-sm-5">
+                                      <div class="form-group">
+                                          <label>Website</label>
+                                          <input type="text" name="website" value="{{edit_listing.website}}" placeholder="http://www.example.com" class="tab_2 form-control" data-type="string">
+                                          <div id="website_validate"></div>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-sm-5 col-sm-offset-1">
+                                      <div class="form-group">
+                                          <label>Accreditations</label>
+                                          <input type="text" name="accreditations" value="{{edit_listing.accreditations}}" class="tab_2 form-control" data-type="string">
+                                          <span id="help-text" class="help-block">
+                                          </span>
+                                          <span id="error-text" class="help-block">
+                                          </span>
+                                      </div>
+                                  </div>
+                                  <div class="col-sm-5">
+                                      <div class="form-group">
+                                          <label>Insurance</label>
+                                          <input type="text" name="insurance" value="{{edit_listing.insurance}}" class="tab_2 form-control" data-type="string"  placeholder="Optional">
+                                          <span id="help-text" class="help-block">
+                                          </span>
+                                          <span id="error-text" class="help-block">
+                                          </span>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-sm-10 col-sm-offset-1">
+                                    <div class="form-group">
+                                    <label for="company_short_description">
+                                      Please provide a brief description of your business
+                                    </label>
+                                    <textarea type="text" name="company_short_description" value="{{edit_listing.company_short_description}}" class="tab_2 form-control" data-type="string"></textarea>
+                                    <div id="company_short_description_validate"></div>
+                                  </div>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-sm-10 col-sm-offset-1">
+                                    <div class="form-group">
+                                    <label for="company_long_description">
+                                      Detailed Description
+                                    </label>
+                                    <textarea type="text" name="company_long_description" value="{{edit_listing.company_long_description}}" class="tab_2 form-control" data-type="string"></textarea>
+                                    <div id="company_long_description_validate"></div>
+                                    </div>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-sm-10 col-sm-offset-1">
+                                    <div class="form-group">
+                                    <label for="company_email">
+                                      Enquiries Email Address
+                                    </label>
+                                    <input type="text" name="company_email" class="tab_2 form-control" data-type="string" value="{{edit_listing.company_email}}">
+                                    <div id="contact_email_validate"></div>
+                                    </div>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-sm-10 col-sm-offset-1">
+                                    <h4>Your Office locations</h4>
+                                    <p>Please enter the details for each of your office locations. Office locations are used in the locality search for business listings.</p>
+                                    <div class="form-group">
+                                    <button id="form-add-address-button" class="btn btn-success" type="submit">
+                                      <span class="fa fa-check">
+                                      </span>
+                                      Add Address
+                                    </button>
+                                    {{> AddressListingsViewTable}}
+                                    </div>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-sm-10 col-sm-offset-1">
+                                    <h4>Listing Images</h4>
+                                    <p>Please provide some images for your listing. You can provide up to 4 photos and 1 company logo. Images must be in JPG or PNG format and shoud be 960 pixels wide.</p>
+                                    <div class="form-group">
+                                    <label for="images">
+                                      Images
+                                    </label>
+                                    {{> upload_bootstrap fileTypes='image/*' formData=myFormData }}
+                                    </div>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-sm-10 col-sm-offset-1">
+                                        <div class="form-group">
+                                          {{> uploadedInfo edit_listing.images}}
+                                        </div>
+                                  </div>
+                                  <div class="col-sm-10 col-sm-offset-1">
+                                    <div class="form-group">
+                                    <label for="logo">
+                                      Company Logo
+                                    </label>
+                                    {{> upload_bootstrap fileTypes='image/*' formData=myLogoData }}
+                                    </div>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                   <div class="col-sm-10 col-sm-offset-1">
+                                        <div class="form-group">
+                                          {{> uploadedInfo edit_listing.logo}}
+                                        </div>
+                                  </div>
+                               </div>
+                            </div>
+                            <div class="tab-pane" id="types">
+                                <div class="row">
+                                    <h4 class="info-text">You picked the following categories. </h4>
+                                    <div class="col-sm-10 col-sm-offset-1">
+                                      {{#if isConsultant edit_listing.type}}
+                                              {{#each consultant_types}}
+                                              <div class="row">
+                                                <div class="form-group">
+                                                  <div class="checkbox">
+                                                    <label>
+                                                      <input type="radio" class="tab_3" name="consultant_type" value="{{name}}" data-type="array" {{itemIsChecked ../edit_listing.consultant_type name}} />
+                                                      {{name}}
+                                                    </label>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                              {{/each}}
+                                      {{/if}}
+                                      {{#if isContractor edit_listing.type}}
+                                              {{#each getContractors}}
+                                              <div class="row">
+                                                <div class="form-group">
+                                                  <div class="checkbox">
+                                                    <label>
+                                                      <input type="radio" class="tab_3" name="contractor_type" value="{{name}}" data-type="array" {{itemIsChecked ../edit_listing.contractor_type name}} />
+                                                      {{name}}
+                                                    </label>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                              {{/each}}
+                                      {{/if}}
+                                      {{#if isSupplier edit_listing.type}}
+
+                                        {{#each supplier_types}}
+                                          <div class="row">
+                                            <div class="form-group">
+                                              <label>{{name}}</label>
+                                              {{#each supplier_types}}
+                                                <div class="checkbox">
+                                                  <label>
+                                                  <input type="radio" class="tab_3" name="supplier_type" value="{{this}}" data-type="array" {{itemIsChecked ../../edit_listing.supplier_type this}}/>
+                                                  {{this}}
+                                                  </label>
+                                                </div>
+                                              {{/each}}
+                                            </div>
+                                          </div>
+                                        {{/each}}
+
+                                      {{/if}}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane" id="industry">
+                                <div class="row">
+                                    <h4 class="info-text">Which Industry do you Service? </h4>
+                                    <div class="col-sm-10 col-sm-offset-1">
+                                         <div class="form-group">
+                                              <label for="industry">
+                                                Industry
+                                              </label>
+                                              <ul class="checkbox">
+                                                <li>
+                                                <input type="checkbox" id="all" />
+                                                <b>Select All</b>
+                                                </li>
+
+                                              {{#each industry}}
+                                                <li>
+                                                <input class="industry tab_4" type="checkbox" {{isChecked ../edit_listing.industry name}} name="industry" value="{{name}}" data-type="array" />
+                                                {{name}}
+                                                </li>
+                                              {{/each}}
+                                            </ul>
+                                              <div id="industry_validate"></div>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- div class="tab-pane" id="industry_sub_sector">
+                                <div class="row">
+                                    <h4 class="info-text">Which Industry Sub Sectors do you Service? </h4>
+                                    <div class="col-sm-10 col-sm-offset-1">
+                                              {{#each industry}}
+                                              <div class="row">
+                                         <div class="form-group">
+                                              <label>{{name}}</label>
+                                              {{#each industry_sub_sector}}
+                                              <div class="checkbox">
+                                                <label>
+                                                <input type="checkbox" class="tab_5" name="industry_sub_sector" value="{{this}}" {{isChecked ../../edit_listing.industry_sub_sector this}}  data-type="array" />
+                                                {{this}}
+                                                </label>
+                                              </div>
+                                              {{/each}}
+                                          </div>
+                                          <div id="industry_sub_sector_validate"></div>
+                                        </div>
+                                          {{/each}}
+                                    </div>
+                                </div>
+                            </div -->
+                        <div class="wizard-footer">
+                            	<div class="pull-right">
+                                    <input type='button' class='btn btn-next btn-fill btn-info btn-wd btn-sm' name='next' value='Next' />
+                                    <input type='submit' class='btn btn-finish btn-fill btn-info btn-wd btn-sm' name='finish' value='Save' />
+
+                                </div>
+                                <div class="pull-left">
+                                    <input type='button' class='btn btn-previous btn-fill btn-default btn-wd btn-sm' name='previous' value='Previous' />
+                                </div>
+      <!--                           <div class="pull-left">
+                                    <button class='btn btn-cancel btn-fill btn-default btn-wd btn-sm' name='cancel'>Cancel</button>
+                                </div>
+      -->                         <div class="clearfix"></div>
+                        </div>
+
+                	</div>
+                </div>
+            </div> <!-- wizard container -->
+          </form>
+        </div> <!-- row -->
+    </div> <!--  big container -->
+</template>

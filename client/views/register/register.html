@@ -1,0 +1,45 @@
+<template name="Register">
+	{{> RegisterRegisterJumbotron}}
+	<br/>
+	<div class="container">
+		<div class="col-sm-5 col-sm-offset-1 col-xs-12">
+			<h1>
+
+			</h1>
+			<p>Create an account with PM Data to save your favourite suppliers and searches. Registered users can also create their own listings in the PM Data directory.</p>
+		</div>
+		<div class="col-sm-5 col-xs-12">
+			{{#if errorMessage}}
+			<div class="alert alert-warning">
+				{{errorMessage}}
+			</div>
+			{{/if}}
+			<form id="register_form" class="account-form" role="form">
+				<input id="register_name" type="text" class="form-control" placeholder="Your full name" required autofocus>
+				<input id="register_email" type="text" class="form-control" placeholder="Email address" autocapitalize="off" autocorrect="off" required>
+				<input id="register_password" type="password" class="form-control" placeholder="Password" autocapitalize="off" autocorrect="off" required>
+				<input id="confirm_register_password" type="password" class="form-control" placeholder="Confirm Password" required>
+				<button class="btn btn-info btn-block" type="submit" data-loading-text="Please wait...">
+					Register
+				</button>
+				<p class="account-form-text-after">
+					Already a member?
+					<a href="{{pathFor 'login'}}">
+						Sign in here
+					</a>
+				</p>
+			</form>
+		</div>
+	</div>
+</template>
+
+<template name="RegisterRegisterJumbotron">
+	<div class="jumbotron text-center" style="background-image: url('/images/banner_intro.jpg');">
+		<div id="content" class="container">
+			<p id="jumbotron-text">
+				Join PM Data
+			</p>
+		</div>
+	</div>
+</template>
+

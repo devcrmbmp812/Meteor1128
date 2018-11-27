@@ -1,0 +1,125 @@
+<template name="editAddress">
+    <div class="modal fade">
+        <div class="modal-dialog" style="width:900px;">
+          <form id="address-modal-form" class="form-horizontal" role="form">
+           <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Address</h4>
+                </div>
+
+                <div class="modal-body">
+                           <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="textinput">Address Line 1</label>
+                            <div class="col-sm-10">
+                              <input type="text" name="address" required="required" placeholder="Address Line 1" data-type="string" class="form-control" value="{{address.address}}">
+                            </div>
+                          </div>
+
+                          <!-- Text input-->
+                          <div class="form-group">
+                            <label class="col-sm-2 control-label" for="textinput">Address Line 2</label>
+                            <div class="col-sm-10">
+                              <input type="text" name="address_2" placeholder="Address Line 2" data-type="string" class="form-control" value="{{address.address_2}}">
+                            </div>
+                          </div>
+
+                          <!-- Text input-->
+                          <div class="form-group">
+                            <label class="col-sm-2 control-label" for="textinput">Suburb/City</label>
+                            <div class="col-sm-10">
+                              <input type="text" name="city" required="required" placeholder="Suburb or City" data-type="string" class="form-control" value="{{address.city}}">
+                            </div>
+                          </div>
+
+                          <!-- Text input-->
+                          <div class="form-group">
+                            <label class="col-sm-2 control-label" for="textinput">State</label>
+                            <div class="col-sm-4">
+                              <select name="state" required="required" class="form-control" id="locations">
+                                  {{#each getLocations}}
+                                      <option value="{{state}}" selected="{{isSelected address.state state}}">{{state}}</option>
+                                  {{/each}}
+                                </select>
+                          </div>
+
+                            <label class="col-sm-2 control-label" for="textinput">Postcode</label>
+                            <div class="col-sm-4">
+                              <input type="text" name="postcode" placeholder="Post Code" required="required" data-type="string" class="form-control" value="{{address.postcode}}">
+                            </div>
+                          </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="phone">
+                                Office Phone
+                            </label>
+                            <div class="col-sm-10">
+                                <input type="tel" name="phone" id="#phone" value="{{address.phone}}" class="form-control" required="required" data-type="telephone">
+                                <span id="help-text" class="help-block">
+                                  Please enter your phone number including the <b>area code</b>
+                                </span>
+                                <span id="error-text" class="help-block">
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="mobile">
+                                Mobile Phone
+                            </label>
+                            <div class="col-sm-10">
+                                <input type="tel" maxlength=10 name="mobile" required="required" value="{{address.mobile}}" class="form-control" data-type="string">
+                                <span id="help-text" class="help-block">
+                                </span>
+                                <span id="error-text" class="help-block">
+                                </span>
+                            </div>
+                        </div>
+<!--                         <div class="form-group">
+                            <label class="col-sm-2 control-label" for="skype">
+                                Skype Username
+                            </label>
+                            <div class="col-sm-10">
+                                <input type="text" name="skype" required="required" value="{{address.skype}}" class="form-control" data-type="string">
+                                <span id="help-text" class="help-block">
+                                </span>
+                                <span id="error-text" class="help-block">
+                                </span>
+                            </div>
+                        </div> -->
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="rep_name">
+                                Company Representative Name
+                            </label>
+                            <div class="col-sm-10">
+                                <input type="text" name="rep_name" value="{{address.rep_name}}" class="form-control" required="required" data-type="string">
+                                <span id="help-text" class="help-block">
+                                </span>
+                                <span id="error-text" class="help-block">
+                                </span>
+                            </div>
+                        </div>
+
+                          <div class="form-group">
+                            <label class="col-sm-2 control-label" for="head_quarter">Head Quarters ?</label>
+                            <div class="col-sm-10">
+<!--                               <select class="form-control" required="required" name="head_quarter" data-type="string" autofocus="autofocus">
+                                <option value=""></option>
+                                <option value="yes">Yes</option>
+                                 <option value="no">No</option>
+                              </select> -->
+                              <input type="checkbox" name="head_quarter" data-type="string" {{isChecked address.head_quarter}} />
+                            </div>
+                          </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" id="saveAddress">Save</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+
+            </div>
+          </form>
+        </div>
+    </div>
+</template>

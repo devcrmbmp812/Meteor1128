@@ -1,0 +1,28 @@
+<template name="AboutUs">
+	{{> AboutUsAboutusJumbotron about_us}}
+	<div class="page-container container" id="content">
+		<div class="row" id="title_row">
+			<div class="col-md-12">
+				<div id="page_menu" class="pull-right">
+				</div>
+			</div>
+		</div>
+		<div class="page-content">
+			<div class="col-sm-12">
+				{{{about_us.content}}}
+			</div>
+		</div>
+		<br/>
+	</div>
+</template>
+
+<template name="AboutUsAboutusJumbotron">
+	<div class="jumbotron text-center" style="background-image: url('/images/banner_intro.jpg');">
+		<div id="content" class="container">
+			<p id="jumbotron-text">
+				{{heading}}
+			</p>
+		</div>
+	</div>
+</template>
+

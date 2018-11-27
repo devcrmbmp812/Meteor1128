@@ -1,0 +1,9 @@
+{
+        "public": {
+            "site_host": "http://images.bizdev.pmdata.com.au",
+            "site_cms_host": "http://bizdev.pmdata.com.au",
+	        "ga": {
+	            "id": " UA-73365306-1"
+	        }
+        }
+}

@@ -1,0 +1,203 @@
+<template name="HomePublicSearchResults">
+			<div id="side-menu" class="col-sm-3 menu">
+				{{> HomePublicSearchResultsSideMenu}}
+			</div>
+			<div id="subcontent" class="col-sm-9">
+				{{> yield region='HomePublicSearchResultsSubcontent'}}
+			</div>
+</template>
+
+<template name="HomePublicSearchResultsSideMenu">
+	<ul id="menu-items" class="nav nav-stacked nav-pills">
+		{{#if isConsultant}}
+		<li class="menu-item-simple {{menuItemClass 'consultant'}}">
+			<label for="consultant">
+				Consultant Type
+			</label>
+			<select class="form-control" id="consultant_type" name="consultant" data-type="string" autofocus="autofocus">
+				{{#each consultant_types}}
+				<option value="{{name}}" selected="{{selected "consultant_type" name}}">
+					{{name}}
+				</option>
+				{{/each}}
+			</select>
+		</li>
+		{{/if}}
+		{{#if isContractor}}
+		<li class="menu-item-simple {{menuItemClass 'contractor'}}">
+			<label for="contractor">
+				Contractor Type
+			</label>
+			<select class="form-control" id="contractor_type" name="contractor" data-type="string" autofocus="autofocus">
+				{{#each getContractors}}
+				<option value="{{name}}" selected="{{selected "contractor_type" name}}">
+					{{name}}
+				</option>
+				{{/each}}
+			</select>
+		</li>
+		{{/if}}
+		{{#if isSupplier}}
+		<li class="menu-item-simple {{menuItemClass 'supplier'}}">
+			<label for="supplier">
+				Supplier Type
+			</label>
+			<select class="form-control" id="supplier_type" name="supplier" data-type="string" autofocus="autofocus">
+				{{#each supplier_types}}
+					<optgroup label="{{name}}">
+						{{#each supplier_types}}
+							<option value="{{this}}" selected="{{selected "supplier_type" this}}">
+							{{this}}
+							</option>
+						{{/each}}
+					</optgroup>
+				{{/each}}
+			</select>
+		</li>
+		{{/if}}
+		<li class="menu-item-simple {{menuItemClass 'regions'}}">
+			<label for="regions">
+				Regions
+			</label>
+			<select class="form-control" name="regions" id="regions" data-type="array">
+				<option value="">Define Project Region</option>
+				{{#each getRegionsForState location}}
+				<option value="{{this}}" selected="{{selected "regions" this}}">
+					{{this}}
+				</option>
+				{{/each}}
+			</select>
+		</li>
+		<!-- li class="menu-item-simple {{menuItemClass 'industry_sub_sector'}}">
+			<label for="industry_sub_sector">
+				Industry Sub Sector
+			</label>
+			<select class="form-control" id="industry_sub_sector" name="industry_sub_sector" data-type="string">
+				<option value="">Select Sub Sector</option>
+				{{#each getIndustrySubSector}}
+				<option value="{{this}}">
+					{{this}}
+				</option>
+				{{/each}}
+			</select>
+		</li -->
+<!-- 		<li class="menu-item-simple {{menuItemClass 'industry_sub_sector'}}">
+			<select class="form-control" name="industry_sub_sector" data-type="string">
+				{{#each industry_sub_sector}}
+				<option value="{{_id}}">
+					{{name}}
+				</option>
+				{{/each}}
+			</select>
+		</li> -->
+		<li class="menu-item-simple {{menuItemClass 'project_value'}}">
+			<label for="project_value">
+				Project Value
+			</label>
+			<select class="form-control" id="project_value" name="project_value" data-type="string">
+				{{#each project_value}}
+				<option value="{{value}}" selected="{{selected "project_value" value}}">
+					{{name}}
+				</option>
+				{{/each}}
+			</select>
+		</li>
+<!-- 		<li class="menu-item-simple {{menuItemClass 'commencement_date'}}">
+			<select class="form-control" name="project_value" data-type="string">
+				{{#each project_value}}
+				<option value="{{_id}}">
+					{{name}}
+				</option>
+				{{/each}}
+			</select>
+		</li> -->
+		<li class="menu-item-simple {{menuItemClass 'refine_search'}}">
+			<button class="btn btn-info do-search" id="refine_search" type="submit" data-loading-text="Please wait...">
+				Refine Search
+			</button>
+		</li>
+	</ul>
+</template>
+
+<template name="HomePublicSearchResultsListings">
+        <div id="property-listings">
+
+               <h3 class="capitalize"><strong>{{params.query.type}}s</strong> Servicing {{params.query.location}}, {{params.query.region}}</h3>
+
+            {{#if isEmpty}}
+            <div class="alert alert-info">
+				No Results Found.
+			</div>
+			{{else}}
+			{{#each tableItems}} {{> HomePublicSearchListingItem}} {{/each}}
+            {{/if}}
+        </div><!-- End container -->
+</template>
+
+<template name="HomePublicSearchListingItem">
+    <!-- Begin Listing: 609 W GRAVERS LN-->
+    <div class="property-listing btm-mrg-20">
+        <div class="media">
+            <div class="col-md-3 search-list-img">
+            <a href="#" target="_parent" id="more">
+            <img alt="image" class="img-responsive" src="{{logoImage logo}}">
+
+        	</a>
+
+            </div>
+
+            <div class="col-md-9 media-body fnt-smaller">
+                <a href="#" target="_parent"></a>
+
+                <h3 class="media-heading">
+                  {{company_name}}
+                  <i class="pull-right addFave">
+                  	{{> favoriteButton _id=_id}}
+                  </i>
+                </h3>
+
+                <p>{{company_short_description}}</p>
+
+
+                <div class="col-md-9" style="padding-left: 0px">
+                  	<div class="clearfix border-btm">
+                    	<div class="col-md-6 text-left search-list-top"></div>
+                    	<div class="col-md-6 text-right search-list-top">{{company_suburb}} {{company_state}}</div>
+                  	</div>
+                   	<div class="col-sm-3 col-xs-6 text-center search-list-btm">Location
+                   		{{#if isLocationMatch regions}}
+                   		<span class="glyphicon glyphicon-ok"></span>
+                   		{{/if}}
+                   	</div>
+                    <div class="col-sm-4 col-xs-6 text-center search-list-btm">
+                    	{{#if isConsultant}}
+                    	Team Location
+                   		{{#if isProjectTeamLocationMatch project_team_location}}
+                   		<span class="glyphicon glyphicon-ok"></span>
+                   		{{/if}}
+                   		{{/if}}
+                    </div>
+
+                    <div class="col-sm-3 col-xs-6 text-center search-list-btm">Sector
+                   		{{#if isSectorMatch industry}}
+                   		<span class="glyphicon glyphicon-ok"></span>
+                    	{{/if}}
+                    </div>
+
+
+                    <div class="col-sm-2 col-xs-6 text-center search-list-btm">$$$
+                   		{{#if isProjectValueMatch minimum_project_value maximum_project_value}}
+                   		<span class="glyphicon glyphicon-ok"></span>
+                   		{{/if}}
+                    </div>
+            	</div>
+            	<div class="col-md-3" style="padding: 0px;">
+					<button class="btn btn-block btn-info" id="more-button" data-loading-text="Please wait...">
+						More
+					</button>
+            	</div>
+            </div>
+        </div>
+    </div><!-- End Listing-->
+</template>
+

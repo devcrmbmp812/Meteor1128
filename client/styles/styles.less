@@ -1,0 +1,421 @@
+// Defines where the package is
+@bootstrap3-less-root: "/client/styles/bootstrap3-less";
+
+// Import Bootstrap core variables and mixin
+// ---------------------------------------
+// (you need these first, to get the default setup for bootstrap)
+
+@import "@{bootstrap3-less-root}/lib/less/variables.import.less";
+@import "@{bootstrap3-less-root}/lib/less/mixins.import.less";
+
+*:focus {
+  border-color: inherit;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  outline: 0;
+}
+body {
+    background-color: #C4C4C4;
+}
+.navbar-nav > li {
+    border-bottom: 4px solid #FFFFFF;
+    margin: 0px;
+}
+.navbar-nav > li.active {
+    border-bottom: 4px solid @brand-info;
+}
+.navbar-nav > li.active a, .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+    color: #000000;
+}
+.navbar-default {
+  border-width: 0px 0px 1px 0px;
+  border-color: @brand-info;
+}
+.navbar-spacer {
+    height: 80px;
+}
+.navbar-nav > li > a {
+    padding: 45px 20px 15px;
+    font-size: 18px;
+}
+.navbar-nav > li > a.dropdown-toggle {
+    font-size: 14px;
+}
+.navbar-header img {
+    margin-top: 20px;
+}
+.content-area {
+
+  @media (min-width: @screen-sm-min) {
+    width: @container-sm;
+  }
+  @media (min-width: @screen-md-min) {
+    width: @container-md;
+  }
+  @media (min-width: @screen-lg-min) {
+    width: @container-lg;
+  }
+  background-color: #FFFFFF;
+    border-radius: 0px 0px 6px 6px;
+    height: 100%;
+    overflow: hidden;
+    box-shadow: 1px 3px 10px #999999;
+}
+.jumbotron {
+    height: 300px;
+    background-size: cover;
+    background-attachment: scroll;
+    background-position: center top;
+    position: relative;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+.jumbotron > .container {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    background-color: rgba(0,0,0,0.4);
+    width: 100%;
+}
+.jumbotron.home > .container {
+    bottom: 10px;
+    background-color: transparent;
+}
+
+#jumbotron-text {
+    color: #ffffff;
+    font-size: 30px;
+    font-weight: 700;
+    margin: 0px;
+}
+.search-bar {
+    background-color: #000000;
+    padding: 0;
+    margin-bottom: 25px;
+}
+.search-bar > div {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.home-btn {
+    background-color: #000000;
+    border-color: #FFFFFF;
+    border-width: 2px;
+    color: #FFFFFF;
+}
+
+.home-label {
+    background-color: #000000;
+    border-color: #000000;
+    border-width: 2px;
+    color: #FFFFFF;
+}
+
+.home-btn:hover, .home-btn.active {
+    background-color: #FFFFFF;
+    color: #000000;
+}
+.select2-container .select2-choice {
+  height: 40px;
+  line-height: 40px;
+  color: #333333 !important;
+  background-image: none;
+}
+a {
+    color: @brand-info;
+    text-decoration: none!important;
+}
+
+/**** LAYOUT ****/
+.list-inline>li {
+    padding: 0 10px 0 0;
+}
+.container-pad {
+    padding: 30px 15px;
+}
+
+
+/**** MODULE ****/
+.bgc-fff {
+    background-color: #fff!important;
+}
+.box-shad {
+    -webkit-box-shadow: 1px 1px 0 rgba(0,0,0,.2);
+    box-shadow: 1px 1px 0 rgba(0,0,0,.2);
+}
+.brdr {
+    border: 1px solid #ededed;
+}
+
+/* Font changes */
+.fnt-smaller {
+    font-size: .9em;
+}
+.fnt-lighter {
+    color: #bbb;
+}
+
+/* Padding - Margins */
+.pad-10 {
+    padding: 10px!important;
+}
+.mrg-0 {
+    margin: 0!important;
+}
+.btm-mrg-10 {
+    margin-bottom: 10px!important;
+}
+.btm-mrg-20 {
+    margin-bottom: 20px!important;
+}
+
+/* Color  */
+.clr-535353 {
+    color: #535353;
+}
+
+/**** SIDE MENU ****/
+.main {
+}
+#side-menu {
+  padding-top: 15px;
+
+}
+#subcontent {
+  padding-right: 0px;
+  background-color: #FBFBFB;
+  min-height: 600px;
+}
+.menu-item-simple {
+  margin-bottom: 15px;
+}
+
+/**** SEARCH RESULT LISTINGS ****/
+.media-body {
+  padding-right: 0px;
+}
+.search-list-img {
+  padding: 0px;
+}
+.search-list-img img {
+  max-width: 180px;
+  height: auto;
+}
+.border-btm {
+  border-bottom: 1px solid #000000;
+}
+.search-list-top {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.search-list-btm {
+  margin-top: 5px;
+  font-weight: normal;
+}
+#more-button {
+  margin-top: 5px;
+}
+.property-listing {
+  background-color: #FFFFFF;
+  border: 1px solid #dedede;
+  border-radius: 8px;
+  box-shadow: 1px 3px 7px #cccccc;
+  padding: 15px;
+  margin-right: 15px;
+  overflow: auto;
+}
+#property-listings {
+  padding: 15px 0 80px;
+}
+.property-details {
+  margin: 15px 15px 50px;
+  overflow: hidden;
+}
+.property-image-details {
+  margin: 0px 0px 0px 15px;
+  overflow: hidden;
+}
+.flexslider {
+  border-width: 0px;
+  margin-bottom: 30px;
+  max-height: 560px;
+}
+.flexslider .slides img {width: auto; height: auto; max-width: 100%; max-height: 560px; margin: 0 auto; vertical-align: middle;}
+.media-heading {
+  margin-bottom: 30px;
+}
+.media-body, .media-body p {
+  font-size: 1.0em;
+}
+ul.contact-list > li {
+  margin-bottom: 15px;
+}
+ul.contact-list i.fa {
+  width: 20px;
+  text-align: center;
+  font-size: 18px;
+}
+.listing-details-table .row {
+  margin-bottom: 10px;
+}
+.listing-details-table {
+  padding-bottom: 15px;
+  margin-bottom: 5px;
+  border-bottom: 1px solid @brand-info;
+}
+.text-bold {
+  font-weight: bold;
+}
+.navbar-toggle {
+  margin-top: 25px;
+}
+
+/**** MEDIA QUERIES ****/
+@media only screen and (max-width: 991px) {
+    #property-listings .property-listing {
+        padding: 5px!important;
+    }
+    #property-listings .property-listing a {
+        margin: 0;
+    }
+    #property-listings .property-listing .media-body {
+        padding: 10px;
+    }
+}
+
+.table th, .table td {
+     border-top: none !important;
+ }
+
+.row-flex, .row-flex > div[class*='col-'] {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex:1 1 auto;
+}
+
+.row-flex-wrap {
+	-webkit-flex-flow: row wrap;
+    align-content: flex-start;
+    flex:0;
+}
+
+.row-flex > div[class*='col-'], .container-flex > div[class*='col-'] {
+	 margin:-.2px; /* hack adjust for wrapping */
+}
+
+.container-flex > div[class*='col-'] div,.row-flex > div[class*='col-'] div {
+	width:100%;
+}
+
+
+.flex-col {
+    display: flex;
+    display: -webkit-flex;
+    flex: 1 100%;
+	flex-flow: column nowrap;
+}
+
+.flex-grow {
+	display: flex;
+    -webkit-flex: 2;
+    flex: 2;
+}
+
+.content-area.container {
+  padding: 0px;
+}
+.container .jumbotron {
+  border-radius: 0px;
+}
+
+/**** HOME PAGE - PUBLIC ****/
+.home-content {
+  padding-bottom: 30px;
+}
+.home-content .col-sm-4 {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.home-content .col-xs-12 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+/**** HOME PAGE - PRIVATE ****/
+.private-content {
+  margin: 20px;
+}
+
+/**** REGISTER FORM ****/
+.wizard-step {
+  margin-bottom: 50px;
+}
+.ui.form .field > label {
+  font-size: 14px;
+  font-weight: normal;
+}
+.ui.checkbox label {
+  font-size: 12px;
+}
+
+.page-content {
+  min-height: 320px;
+}
+
+.btm-mrg-20 {
+    margin-bottom: 20px!important;
+}
+
+.entry:not(:first-of-type)
+{
+    margin-top: 10px;
+}
+
+h3.capitalize {
+    text-transform: capitalize;
+}
+.wizard-container {
+  padding-top: 20px;
+}
+.wizard-card {
+  box-shadow: none;
+  background-color: transparent;
+}
+.wizard-header {
+  margin: 30px;
+}
+.select2-container {
+  width: 100%;
+}
+.select2-container-multi .select2-choices {
+  min-height: 38px;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  background-image: none;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+.wizard-footer {
+  margin-top: 30px;
+}
+
+.listing-error-class {
+    color:#FF0000;  /* red */
+}
+.listing-valid-class {
+    color:#00CC00; /* green */
+}
+
+.map-container {
+  width: 572px;
+  max-width: 100%;
+  height: 256px;
+}
+.jumbotron {
+  height: 270px;
+}
+.flex-direction-nav a {
+  height: 50px;
+}

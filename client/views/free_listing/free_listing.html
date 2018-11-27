@@ -1,0 +1,34 @@
+<template name="freeListing">
+	{{> FreeListingJumbotron}}
+	<br/>
+	<div class="page-container container" id="content">
+		<div class="row" id="title_row">
+			<div class="col-md-12">
+				<div id="page_menu" class="pull-right">
+				</div>
+			</div>
+		</div>
+		<div class="page-content">
+			<div class="col-md-6">
+				<p>
+				PM Data gives you not only visibility but also a chance to select your audience.</p>
+				<p>Listing your business is easy, simply flow through the process to better define and broadcast what strengths you want to share for the right people and target your business’ specific project focus including type, size, location and timing.</p>
+				<p>Getting started is easy, just log in then follow our step-by-step process.</p>
+
+			</div>
+			<div class="col-md-6">
+				<a href="{{pathFor 'register'}}" class="btn btn-lg btn-block btn-info">Register Now!</a>
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name="FreeListingJumbotron">
+	<div class="jumbotron text-center" style="background-image: url('/images/list_your_business.jpg');">
+		<div id="content" class="container">
+			<p id="jumbotron-text">
+				The PM Data Opportunity
+			</p>
+		</div>
+	</div>
+</template>

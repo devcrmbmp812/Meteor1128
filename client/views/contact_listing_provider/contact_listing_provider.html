@@ -1,0 +1,166 @@
+<template name="ContactListingProvider">
+	<div class="page-container container">
+		<div class="row">
+			<div class="col-md-12" id="content">
+				<div class="row" id="title_row">
+					<div class="col-md-12">
+						<div id="page_menu" class="pull-right">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br/>
+		<div class="row">
+			<div id="menu" class="col-sm-3 col-md-2">
+
+	<!-- 			{{> ContactListingProviderSideMenu}} -->
+				{{> ContactListingBackButton}}
+			</div>
+
+			<div id="subcontent" class="col-sm-9 col-md-10">
+				{{> yield region='ContactListingProviderSubcontent'}}
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name="ContactListingBackButton">
+	<h3 id="component-title">
+		<a href="#" id="form-back-button" title="back">
+			<span class="fa fa-chevron-left">
+			</span>
+			<strong>Back</strong>
+		</a>
+	</h3>
+</template>
+<template name="ContactListingProviderSideMenu">
+	<ul id="menu-items" class="nav nav-stacked nav-pills">
+		{{#if isConsultant}}
+		<li class="menu-item-simple {{menuItemClass 'consultant'}}">
+			<select class="form-control" id="consultant_type" name="consultant" data-type="string" autofocus="autofocus">
+				{{#each consultant_types}}
+				<option value="{{name}}" selected="{{selected "consultant_type" name}}">
+					{{name}}
+				</option>
+				{{/each}}
+			</select>
+		</li>
+		{{/if}}
+		{{#if isContractor}}
+		<li class="menu-item-simple {{menuItemClass 'contractor'}}">
+			<select class="form-control" id="contractor_type" name="contractor" data-type="string" autofocus="autofocus">
+				{{#each contractor_types}}
+				<option value="{{name}}" selected="{{selected "contractor_type" name}}">
+					{{name}}
+				</option>
+				{{/each}}
+			</select>
+		</li>
+		{{/if}}
+		{{#if isSupplier}}
+		<li class="menu-item-simple {{menuItemClass 'supplier'}}">
+			<select class="form-control" id="supplier_type" name="supplier" data-type="string" autofocus="autofocus">
+				{{#each supplier_types}}
+				<option value="{{name}}" selected="{{selected "supplier_type" name}}">
+					{{name}}
+				</option>
+				{{/each}}
+			</select>
+		</li>
+		{{/if}}
+		<li class="menu-item-simple {{menuItemClass 'project_team_location'}}">
+			<select class="form-control" name="project_team_location" data-type="array">
+				{{#each getRegionsForState location}}
+				<option value="{{this}}">
+					{{this}}
+				</option>
+				{{/each}}
+			</select>
+		</li>
+		<li class="menu-item-simple {{menuItemClass 'industry_sub_sector'}}">
+			<select class="form-control" id="industry_sub_sector" name="industry_sub_sector" data-type="string">
+				{{#each getIndustrySubSector}}
+				<option value="{{this}}">
+					{{this}}
+				</option>
+				{{/each}}
+			</select>
+		</li>
+<!-- 		<li class="menu-item-simple {{menuItemClass 'industry_sub_sector'}}">
+			<select class="form-control" name="industry_sub_sector" data-type="string">
+				{{#each industry_sub_sector}}
+				<option value="{{_id}}">
+					{{name}}
+				</option>
+				{{/each}}
+			</select>
+		</li> -->
+		<li class="menu-item-simple {{menuItemClass 'project_value'}}">
+			<select class="form-control" id="project_value" name="project_value" data-type="string">
+				{{#each project_value}}
+				<option value="{{value}}" selected="{{selected "project_value" value}}">
+					{{name}}
+				</option>
+				{{/each}}
+			</select>
+		</li>
+<!-- 		<li class="menu-item-simple {{menuItemClass 'commencement_date'}}">
+			<select class="form-control" name="project_value" data-type="string">
+				{{#each project_value}}
+				<option value="{{_id}}">
+					{{name}}
+				</option>
+				{{/each}}
+			</select>
+		</li> -->
+		<li class="menu-item-simple {{menuItemClass 'refine_search'}}">
+			<button class="btn btn-info do-search" id="refine_search" type="submit" data-loading-text="Please wait...">
+				Refine Search
+			</button>
+		</li>
+	</ul>
+</template>
+
+<template name="ContactListingProviderForm">
+	<div class="container">
+	    <div class="form-area">
+	    	{{#if notSentMail}}
+	        <form role="form" id="form">
+                <h3 style="margin-top: 25px; margin-bottom: 25px; text-align: left;">Email to {{admin_listings.company_name}}</h3>
+				<label for="subject">
+						Subject
+				</label>
+				<div class="form-group">
+					<input type="text" class="form-control" id="subject" name="subject" value="Project Enquiry from PM Data." placeholder="Subject" required>
+				</div>
+				<label for="email">
+						CC
+				</label>
+   				<div class="input-div">
+					<input type="text" class="form-control" id="email" name="email" placeholder="Email" required data-type="array">
+				</div>
+				<br/>
+				<label for="bcc-email">
+						BCC
+				</label>
+   				<div class="input-div">
+					<input type="text" class="form-control" id="bcc-email" name="bcc-email" placeholder="Email" required data-type="array">
+				</div>
+				<br/>
+				<label for="message">
+						Message
+				</label>
+				<div class="input-div">
+                <textarea class="form-control" type="textarea" id="message" placeholder="Message" maxlength="140" rows="7">{{createEmailBody}}</textarea>
+                </div>
+                <br/>
+    			<button type="button" id="submit" name="submit" class="btn btn-info pull-left">Send</button>
+	        </form>
+	        {{else}}
+	        <br/>
+	        <h1>Thank you. We have sent your message to the provider</h1>
+	        {{/if}}
+	    </div>
+	</div>
+</template>

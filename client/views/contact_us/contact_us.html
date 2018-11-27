@@ -1,0 +1,40 @@
+<template name="ContactUs">
+	{{> ContactUsJumbotron contact_us}}
+	<br/>
+	<div class="page-container container" id="content">
+		<div class="row" id="title_row">
+			<div class="col-md-12">
+				<div id="page_menu" class="pull-right">
+				</div>
+			</div>
+		</div>
+		<div class="page-content">
+			<div class="col-sm-6">
+				{{{contact_us.content}}}
+			</div>
+			<div class="col-sm-6">
+				{{> map}}
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name="ContactUsJumbotron">
+	<div class="jumbotron text-center" style="background-image: url('/images/banner_about.jpg');">
+		<div id="content" class="container">
+			<p id="jumbotron-text">
+				{{heading}}
+			</p>
+		</div>
+	</div>
+</template>
+
+<template name="map">
+  <div class="map-container">
+    {{#unless geolocationError}}
+      {{> googleMap name="map" options=mapOptions}}
+    {{else}}
+      Geolocation failed: {{geolocationError}}
+    {{/unless}}
+  </div>
+</template>

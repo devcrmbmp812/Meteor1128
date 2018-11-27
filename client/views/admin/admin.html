@@ -1,0 +1,90 @@
+<template name="Admin">
+	<div class="page-container container">
+		<div class="row">
+			<div class="col-md-12" id="content">
+				<div class="row" id="title_row">
+					<div class="col-md-12">
+						<div id="page_menu" class="pull-right">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div id="menu" class="col-sm-3 col-md-2">
+				<h2>
+				</h2>
+				{{> AdminSideMenu}}
+			</div>
+			<div id="subcontent" class="col-sm-9 col-md-10">
+				{{> yield region='AdminSubcontent'}}
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name="AdminSideMenu">
+	<ul id="menu-items" class="nav nav-stacked nav-pills">
+		<li id="menu-item-simple" class="{{menuItemClass 'admin.users'}}">
+			<a href="{{pathFor 'admin.users'}}">
+				Users
+			</a>
+		</li>
+		<li id="menu-item-simple" class="{{menuItemClass 'admin.cms'}}">
+			<a href="{{pathFor 'admin.cms'}}">
+				CMS
+			</a>
+		</li>
+		<li id="menu-item-simple" class="{{menuItemClass 'admin.listings'}}">
+			<a href="{{pathFor 'admin.listings'}}">
+				Listings
+			</a>
+		</li>
+<!-- 		<li id="menu-item-simple" class="admin">
+			<a href="#">
+				Search Lists
+			</a>
+		</li> -->
+		<li id="menu-item-simple" class="{{menuItemClass 'admin.consultant_types'}}">
+			<a href="{{pathFor 'admin.consultant_types'}}">
+				Consultant Types
+			</a>
+		</li>
+		<li id="menu-item-simple" class="{{menuItemClass 'admin.contractor_types'}}">
+			<a href="{{pathFor 'admin.contractor_types'}}">
+				Contractor Types
+			</a>
+		</li>
+		<li id="menu-item-simple" class="{{menuItemClass 'admin.supplier_types'}}">
+			<a href="{{pathFor 'admin.supplier_types'}}">
+				Supplier Types
+			</a>
+		</li>
+		<li id="menu-item-simple" class="{{menuItemClass 'admin.project_value'}}">
+			<a href="{{pathFor 'admin.project_value'}}">
+				Project Value
+			</a>
+		</li>
+		<li id="menu-item-simple" class="{{menuItemClass 'admin.industry'}}">
+			<a href="{{pathFor 'admin.industry'}}">
+				Industry
+			</a>
+		</li>
+		<li id="menu-item-simple" class="{{menuItemClass 'admin.locations'}}">
+			<a href="{{pathFor 'admin.locations'}}">
+				Locations
+			</a>
+		</li>
+<!-- 		<li id="menu-item-simple" class="{{menuItemClass 'admin.industry_sub_sector'}}">
+			<a href="{{pathFor 'admin.industry_sub_sector'}}">
+				Industry Sub-sector
+			</a>
+		</li> -->
+		<li id="menu-item-simple" class="{{menuItemClass 'admin.project_team_location'}}">
+			<a href="{{pathFor 'admin.project_team_location'}}">
+				Project Team Location
+			</a>
+		</li>
+	</ul>
+</template>
+

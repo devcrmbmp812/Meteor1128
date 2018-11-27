@@ -1,0 +1,247 @@
+<template name="HomePublicSearch">
+	{{> HomePublicHomeJumbotron}}{{> HomePublicSearchLocation}}
+</template>
+
+<template name="HomePublicSearchJumbotron">
+	<div class="jumbotron text-center home" style="background-image: url('/images/banner_home.jpg');">
+		<div id="content" class="container">
+			<p id="jumbotron-text">
+				What are you looking for?
+			</p>
+		</div>
+	</div>
+</template>
+
+<template name="HomePublicSearchLocation">
+	<form id="dataview-controls" class="form-inline">
+		<div class="search-bar clearfix" id="search-bar">
+			<div class="text-center">
+				<h3 class="capitalize" style="color: #FFFFFF;">Searching for <strong>{{params.type}}s</strong></h3>
+			</div>
+		</div>
+	</form>
+	<div class="home-content clearfix">
+		<div class="text-center">
+			<div id="content" class="container">
+				<h3>
+					Refine Search
+				</h3>
+			</div>
+		</div>
+		<form id="form" role="form">
+		<div class="clearfix">
+			<div class="col-md-4 col-md-offset-1">
+				<div class="form-group  field-consultant">
+					{{#if isConsultant}}
+					<label for="consultant">
+						Consultant Type
+					</label>
+					<div class="input-div">
+						<select class="form-control" name="consultant" data-type="string" id="consultant_type" autofocus="autofocus"><option value="">Select a Consultant Type</option>
+							{{#each consultant_types}}
+							<option value="{{name}}">
+								{{name}}
+							</option>
+							{{/each}}
+						</select>
+						<span id="help-text" class="help-block">
+						</span>
+						<span id="error-text" class="help-block">
+						</span>
+					</div>
+					{{/if}}
+					{{#if isContractor}}
+					<label for="contractor">
+						Contractor Type
+					</label>
+					<div class="input-div">
+						<select class="form-control" name="contractor" data-type="string" id="contractor_type" autofocus="autofocus">
+							<option value="">Select a Contractor Type</option>
+							{{#each getContractors}}
+							<option value="{{name}}">
+								{{name}}
+							</option>
+							{{/each}}
+						</select>
+						<span id="help-text" class="help-block">
+						</span>
+						<span id="error-text" class="help-block">
+						</span>
+					</div>
+					{{/if}}
+					{{#if isSupplier}}
+					<label for="supplier">
+						Supplier Type
+					</label>
+					<div class="input-div">
+						<select class="form-control" name="supplier" data-type="string" id="supplier_type" autofocus="autofocus">
+							<option value="">Select a Supplier Type</option>
+							{{#each supplier_types}}
+								<optgroup label="{{name}}">
+									{{#each supplier_types}}
+										<option value="{{this}}">
+										{{this}}
+										</option>
+									{{/each}}
+								</optgroup>
+							{{/each}}
+						</select>
+						<span id="help-text" class="help-block">
+						</span>
+						<span id="error-text" class="help-block">
+						</span>
+					</div>
+					{{/if}}
+				</div>
+				<div class="form-group  field-project_value">
+					{{#if isConsultant}}
+					<label for="project_value">
+						Project Value
+					</label>
+					{{else}}
+					<label for="project_value">
+						Approx Contract Value
+					</label>
+					{{/if}}
+					<div class="input-div">
+						<select class="form-control" name="project_value" id="project_value" data-type="string">
+							{{#if isConsultant}}
+							<option value="">Project Value</option>
+							{{else}}
+							<option value="">Select Approx Contract Value</option>
+							{{/if}}
+							{{#each project_value}}
+							<option value="{{value}}">
+								{{name}}
+							</option>
+							{{/each}}
+						</select>
+						<span id="help-text" class="help-block">
+						</span>
+						<span id="error-text" class="help-block">
+						</span>
+					</div>
+				</div>
+				<div class="form-group  field-industry">
+					<label for="industry">
+						Industry
+					</label>
+					<div class="input-div">
+						<select class="form-control" name="industry" id="industry" data-type="string">
+							<option value="">Select a Industry</option>
+							{{#each industry}}
+							<option value="{{name}}">
+								{{name}}
+							</option>
+							{{/each}}
+						</select>
+						<span id="help-text" class="help-block">
+						</span>
+						<span id="error-text" class="help-block">
+						</span>
+					</div>
+				</div>
+				</div>
+			<div class="col-md-4 col-md-offset-2">
+<!-- 				<div class="form-group  field-industry_sub_sector">
+					<label for="industry_sub_sector">
+						Industry Sub-sector
+					</label>
+					<div class="input-div">
+						<select class="form-control" name="industry_sub_sector" id="industry_sub_sector" data-type="string">
+							{{#each industry_sub_sector}}
+							<option value="{{_id}}">
+								{{name}}
+							</option>
+							{{/each}}
+						</select>
+						<span id="help-text" class="help-block">
+						</span>
+						<span id="error-text" class="help-block">
+						</span>
+					</div>
+				</div> -->
+				<div class="form-group  field-project_location">
+						<label for="project_location">
+							Project Location
+						</label>
+						<div class="input-div">
+							<select name="locations" class="form-control" style="width: 100%;" id="locations"><option value="">Project Location</option>
+				    			{{#each sortedRegions}}
+				      			<option value="{{this}}">{{this}}</option>
+				    			{{/each}}
+				    		</select>
+							<span id="help-text" class="help-block">
+							</span>
+							<span id="error-text" class="help-block">
+							</span>
+						</div>
+					</div>
+					<div class="form-group  field-project_location">
+						<label for="regions">
+							Project Region
+						</label>
+						<div class="input-div">
+							<select name="regions" class="form-control" style="width: 100%;" id="regions"><option value="">Project Region</option>
+				    			{{#each sortedRegionsByState}}
+				      			<option value="{{this}}">{{this}}</option>
+				    			{{/each}}
+				    		</select>
+							<span id="help-text" class="help-block">
+							</span>
+							<span id="error-text" class="help-block">
+							</span>
+						</div>
+					</div>
+				{{#if isConsultant}}
+				<div class="form-group  field-project_team_location">
+					<label for="project_team_location">
+						Project Team Location
+					</label>
+					<div class="input-div">
+						<select class="form-control" name="project_team_location" id="project_team_location" data-type="array">
+							<option value="">Preferred Office Location</option>
+							{{#each project_team_location}}
+							<option value="{{name}}">
+								{{name}}
+							</option>
+							{{/each}}
+						</select>
+						<span id="help-text" class="help-block">
+						</span>
+						<span id="error-text" class="help-block">
+						</span>
+					</div>
+				</div>
+				{{/if}}
+<!-- 				<div class="form-group  field-project_team_location">
+					<label for="project_team_location">
+						Commencement Date
+					</label>
+					<div class="input-div">
+						<select class="form-control" name="commencement_date" id="commencement_date" data-type="array">
+							{{#each project_team_location}}
+							<option value="{{_id}}">
+								{{name}}
+							</option>
+							{{/each}}
+						</select>
+						<span id="help-text" class="help-block">
+						</span>
+						<span id="error-text" class="help-block">
+						</span>
+					</div>
+				</div> -->
+			</div>
+			</div>
+			<div class="col-md-2 col-md-offset-5 text-center">
+					<button class="btn btn-info btn-block do-search" type="submit" data-loading-text="Please wait...">
+							Search
+					</button>
+			</div>
+		</form>
+	</div>
+</template>
+
+
+

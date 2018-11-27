@@ -1,0 +1,9 @@
+{
+        "public": {
+            "site_host": "http://images.pmdata.com.au",
+            "site_cms_host": "http://localhost:3000",
+	        "ga": {
+	            "id": " UA-73365306-1"
+	        }
+        }
+}

@@ -1,0 +1,165 @@
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>
+		PM Data
+	</title>
+</head>
+<template name="layout">
+	{{#if currentUser}}
+		{{> PrivateLayout}}
+	{{else}}
+		{{> PublicLayout}}
+	{{/if}}
+</template>
+
+<template name="PublicLayout">
+	<div id="pmdata">
+		<div class="navbar navbar-fixed-top navbar-default" role="navigation">
+			<div class="navbar-container container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="sr-only">
+							Toggle navigation
+						</span>
+						<span class="icon-bar">
+						</span>
+						<span class="icon-bar">
+						</span>
+						<span class="icon-bar">
+						</span>
+					</button>
+    				<a href="/">
+    					<img src="/images/pmdataLogo.png" />
+    				</a>
+				</div>
+				<div id="menu" class="collapse navbar-collapse">
+					{{> PublicLayoutRightMenu}}
+				</div>
+			</div>
+		</div>
+		<div class="navbar-spacer"></div>
+		<div class="content-area container">
+		{{> yield}}
+		</div>
+	</div>
+	<div id="footer">
+		{{> FooterMenu}}
+	</div>
+</template>
+
+<template name="PublicLayoutRightMenu">
+	<ul id="menu-items" class="nav navbar-nav navbar-right">
+		<li id="menu-item-simple" class="{{menuItemClass 'home_public'}}">
+			<a href="{{pathFor 'home_public'}}">
+				Home
+			</a>
+		</li>
+		<li id="menu-item-simple" class="{{menuItemClass 'free_listing'}}">
+			<a href="{{pathFor 'free_listing'}}">
+				List Your Business
+			</a>
+		</li>
+		<li id="menu-item-simple" class="{{menuItemClass 'about_us'}}">
+			<a href="{{pathFor 'about_us'}}">
+				About Us
+			</a>
+		</li>
+		<li id="menu-item-simple" class="{{menuItemClass 'register'}}">
+			<a href="{{pathFor 'register'}}">
+				Register
+			</a>
+		</li>
+		<li id="menu-item-simple" class="{{menuItemClass 'login'}}">
+			<a href="{{pathFor 'login'}}">
+				Login
+			</a>
+		</li>
+	</ul>
+</template>
+
+<template name="PrivateLayout">
+	<div id="wrap">
+		<div class="navbar navbar-fixed-top navbar-default" role="navigation">
+			<div class="navbar-container container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="sr-only">
+							Toggle navigation
+						</span>
+						<span class="icon-bar">
+						</span>
+						<span class="icon-bar">
+						</span>
+						<span class="icon-bar">
+						</span>
+					</button>
+					<a href="/">
+						<img src="/images/pmdataLogo.png" />
+					</a>
+				</div>
+				<div id="menu" class="collapse navbar-collapse">
+					{{> PrivateLayoutRightMenu}}
+				</div>
+			</div>
+		</div>
+		<div class="navbar-spacer"></div>
+		<div class="content-area container">
+		{{> yield}}
+		</div>
+	</div>
+	<div id="footer">
+		{{> FooterMenu}}
+	</div>
+</template>
+
+<template name="PrivateLayoutRightMenu">
+	<ul id="menu-items" class="nav navbar-nav navbar-right">
+		<li id="menu-item-simple" class="{{menuItemClass 'home_public'}}">
+			<a href="{{pathFor 'home_public'}}">
+				Home
+			</a>
+		</li>
+		<li id="menu-item-simple" class="{{menuItemClass 'about_us'}}">
+			<a href="{{pathFor 'about_us'}}">
+				About Us
+			</a>
+		</li>
+		<li id="menu-item-simple" class="{{menuItemClass 'admin'}}">
+			<a href="{{pathFor 'admin'}}">
+				Admin
+			</a>
+		</li>
+<!-- 		<li id="menu-item-simple" class="{{menuItemClass 'user.home'}}">
+			<a href="{{pathFor 'user.home'}}">
+				My Account
+			</a>
+		</li> -->
+		<li id="menu-item-simple" class="{{menuItemClass 'user.home'}}">
+			<a href="{{pathFor 'user.listings'}}">
+				Profile
+			</a>
+		</li>
+		<li id="menu-item-dropdown" class="dropdown ">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+				{{userEmail}}
+				<b class="caret">
+				</b>
+			</a>
+			<ul id="menu-items" class="dropdown-menu">
+<!-- 		        <li id="menu-item-simple" class="{{menuItemClass 'user.favorites'}}">
+		            <a href="{{pathFor 'user.favorites'}}">Favorites</a>
+		        </li>
+				<li class="{{menuItemClass 'user_settings'}}">
+					<a href="{{pathFor 'user_settings'}}">
+						Settings
+					</a>
+				</li> -->
+				<li class="{{menuItemClass 'logout'}}">
+					<a href="{{pathFor 'logout'}}">
+						Logout
+					</a>
+				</li>
+			</ul>
+		</li>
+	</ul>
+</template>

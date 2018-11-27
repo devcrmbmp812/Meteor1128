@@ -1,0 +1,112 @@
+<template name="UserListingDetail">
+    <div class="page-container container" id="content">
+        <div class="row" id="title_row">
+            <div class="col-md-12">
+                <div id="page_menu" class="pull-right">
+                </div>
+            </div>
+        </div>
+        {{> UserListingDetailItem}}
+    </div>
+</template>
+
+
+<template name="UserListingDetailItem">
+        <div id="property-listings">
+		    <div class="row" style="padding-right: 15px;">
+		    <!-- Begin Listing: 609 W GRAVERS LN-->
+		    <div class="property-image-details">
+		    	{{> imagesSlider admin_listings.images}}
+		    </div>
+		    <div class="property-details">
+		        <div class="col-sm-4 col-md-3 col-xs-12">
+		          <div class="col-xs-6 col-sm-12">
+                    <ul class="list-unstyled contact-list">
+                        <li>
+		          <img alt="image" class="img-responsive" src="{{logoImage admin_listings.logo}}">
+                        </li>
+                    </ul>
+		          </div>
+		          <div class="col-xs-6 col-sm-12">
+                    <ul class="list-unstyled contact-list">
+                        <li>
+                        	<button class="btn btn-info btn-block do-search" id="request_info" data-loading-text="Please wait...">
+						Request Info
+							</button>
+						</li>
+                        <li>
+							<a href="#" id="call-phone">
+								<i class="fa fa-phone"></i> {{getPhoneNumber}}
+							</a>
+                        </li>
+                        <li>
+							<a href="#" id="call-mobile">
+								<i class="fa fa-mobile"></i> {{getMobileNumber}}
+							</a>
+                        </li>
+                        <li>
+							<a href="#" id="call-skype">
+								<i class="fa fa-skype"></i> {{getSkype}}
+							</a>
+                        </li>
+                        <li>
+							<a href="{{admin_listings.website}}" target="_blank">
+								<i class="fa fa-info-circle"></i> Visit Website
+							</a>
+                        </li>
+                    </ul>
+                </div>
+		        </div>
+		        <div class="col-sm-8 col-md-9 col-xs-12">
+		            <div class="media-body">
+		                <a href="#" target="_parent"></a>
+
+		                <h3 class="media-heading">
+		                  {{admin_listings.company_name}}
+		                  <i class="fa fa-star-o pull-right addFave"></i>
+
+		                </h3>
+
+		                <p>{{admin_listings.company_long_description}}</p>
+                    <div class="listing-details-table">
+                      <div class="row">
+                        <div class="col-sm-3 text-bold">
+                          Insurance
+                        </div>
+                        <div class="col-sm-9">
+                          {{admin_listings.insurance}}
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-sm-3 text-bold">
+                          Accreditation
+                        </div>
+                        <div class="col-sm-9">
+                          {{admin_listings.accreditations}}
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-sm-3 text-bold">
+                          Head Office
+                        </div>
+                        <div class="col-sm-9">
+                          {{getAddress}}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-3 text-center search-list-btm">Location</div>
+
+                        <div class="col-sm-3 text-center search-list-btm">Sector</div>
+
+                        <div class="col-sm-3 text-center search-list-btm">Sub Sector</div>
+
+                        <div class="col-sm-3 text-center search-list-btm">$$$</div>
+				            </div>
+            	     </div>
+		        </div>
+		    </div><!-- End Listing-->
+	</div>
+</template>
+

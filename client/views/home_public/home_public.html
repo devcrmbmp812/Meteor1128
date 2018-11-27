@@ -1,0 +1,84 @@
+<template name="HomePublic">
+	{{> HomePublicHomeJumbotron}}{{> HomePublicHomeSearch}}
+</template>
+
+<template name="HomePublicHomeJumbotron">
+	<div class="jumbotron text-center home" style="background-image: url('/images/banner_home.jpg');">
+		<div id="content" class="container">
+			<p id="jumbotron-text">
+				{{home_page.heading}}
+			</p>
+		</div>
+	</div>
+</template>
+
+<template name="HomePublicHomeSearch">
+	<form id="dataview-controls" class="form-inline">
+		<div class="search-bar clearfix" id="search-bar">
+			<div class="col-sm-4 col-xs-4">
+				<button class="btn btn-block home-btn consultant-btn">
+					Consultant
+				</button>
+			</div>
+			<div class="col-sm-4 col-xs-4">
+				<button class="btn btn-block home-btn contractor-btn">
+					Contractor
+				</button>
+			</div>
+			<div class="col-sm-4 col-xs-4">
+				<button class="btn btn-block home-btn supplier-btn">
+					Supplier
+				</button>
+			</div>
+			<!-- New design
+			<div class="col-md-4 col-md-offset-4">
+ 				<input type="text" class="form-control input-lg" id="dataview-search-input" placeholder="Project Location" name="search" value="{{searchString}}" autofocus="autofocus" style="width: 100%;">
+				<select name="locations" class="form-control" style="width: 100%;" id="locations"><option value="">Project Location</option>
+			    	{{#each sortedRegions}}
+			      		<option value="{{this}}">{{this}}</option>
+			    	{{/each}}
+			    </select>
+					<select class="form-control" style="width: 100%;" id="type" name="type" data-type="string" >
+						<option value="">Please choose</option>
+					    <option value="consultant">Consultant</option>
+					    <option value="contractor">Contractor</option>
+					    <option value="supplier">Supplier</option>
+					</select>
+	 			</div>
+			<div class="col-sm-2 col-xs-4 pull-right">
+				<button class="btn btn-block btn-info do-search" id="dataview-search-button">
+					<span class="fa fa-search">
+					</span>
+					Search
+				</button>
+			</div>
+			-->
+		</div>
+	</form>
+	<div class="home-content page-content clearfix">
+<!-- 		<div class="col-sm-5 col-sm-offset-1 col-xs-12">
+			<h1>
+				Project Managers
+			</h1>
+			<p>
+				PM Data provides access to a wide variety of service providers in the Construction Industry.
+			</p>
+			<p>
+				You’ll instantly find consultants, contractors and suppliers suitable for your projects. We then link you directly with the service provider’s profile and the correct contact person.
+			</p>
+		</div>
+		<div class="col-sm-5 col-xs-12">
+			<h1>
+				Service Providers
+			</h1>
+			<p>
+				We are your connection to commercial providers and decision makers who engage in projects from $50k to $200M+ including consultancy, head contracting and sub-contracting or direct suppliers.
+			</p>
+			<p>
+				With PM Data you promote your business in a highly defined way by telling project managers exactly what your capabilities are. In terms of visibility to high level decision makers, it’s a game changer.
+			</p>
+		</div> -->
+		{{{home_page.content}}}
+	</div>
+
+</template>

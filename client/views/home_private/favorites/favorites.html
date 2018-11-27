@@ -1,0 +1,67 @@
+<template name="UserFavorites">
+    <div class="page-container container" id="content">
+        <div class="row" id="title_row">
+            <div class="col-md-12">
+                <div id="page_menu" class="pull-right">
+                </div>
+            </div>
+        </div>
+        {{> UserFavoritesListingsView}}
+    </div>
+</template>
+
+<template name="UserFavoritesListingsView">
+    <br/>
+    <h2 id="component-title">
+        Favorite Listings
+    </h2>
+    {{#if Favorites 'Listing'}}
+        {{#each Favorites 'Listing'}}
+            {{> UserFavoritesListingsViewItem}}
+        {{/each}}
+    {{else}}
+    <div class="alert alert-warning">
+        No favorites available.
+    </div>
+    {{/if}}
+</template>
+
+<template name="UserFavoritesListingsViewItem">
+    <!-- Begin Listing: 609 W GRAVERS LN-->
+    <div class="property-listing btm-mrg-20">
+        <div class="media">
+            <div class="col-md-3 search-list-img">
+            <a href="#" target="_parent">
+            <img alt="image" class="img-responsive" src="{{logoImage logo}}"></a>
+
+            </div>
+
+            <div class="col-md-9 media-body fnt-smaller">
+                <a href="#" target="_parent"></a>
+
+                <h3 class="media-heading">
+                  {{company_name}}
+                  <i class="pull-right addFave">
+                    {{> favoriteButton _id=_id}}
+                  </i>
+                </h3>
+
+                <p>{{company_short_description}}</p>
+
+
+                <div class="col-md-9" style="padding-left: 0px">
+                    <div class="clearfix border-btm">
+                        <div class="col-md-6 text-left search-list-top"></div>
+                        <div class="col-md-6 text-right search-list-top">{{company_suburb}} {{company_state}}</div>
+                    </div>
+                </div>
+                <div class="col-md-3" style="padding: 0px;">
+                    <button class="btn btn-block btn-info" id="more-button" data-loading-text="Please wait...">
+                        More
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div><!-- End Listing-->
+</template>
+

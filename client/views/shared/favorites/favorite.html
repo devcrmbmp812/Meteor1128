@@ -1,0 +1,15 @@
+<template name="favoriteButton">
+	{{#if isFavorite _id}}
+	{{> favoriteButtonFavorited _id=_id}}
+	{{else}}
+	{{> favoriteButtonNotFavorited}}
+	{{/if}}
+</template>
+
+<template name="favoriteButtonFavorited">
+	<a class="btn favorite-button" style="color: #F5A623;" doc="{{_id}}">Favourite <i class="fa fa-star"></i></a>
+</template>
+
+<template name="favoriteButtonNotFavorited">
+	<a class="btn favorite-button button" doc="{{_id}}">Save As Favourite <i class="fa fa-star-o"></i></a>
+</template>

@@ -1,0 +1,416 @@
+<template name="AdminListingsEdit">
+	<div class="page-container container" id="content">
+		<div class="row" id="title_row">
+			<div class="col-md-12">
+				<div id="page_menu" class="pull-right">
+				</div>
+			</div>
+		</div>
+		{{> AdminListingsEditEditForm}}
+	</div>
+</template>
+
+<template name ="AdminListingsEditForm">
+	<div class="">
+		<div class="form-group  field-category">
+			<label for="category">
+				Category
+			</label>
+			<div class="input-div">
+				{{edit_listing.consultant_type}}
+				{{edit_listing.contractor_type}}
+				{{edit_listing.supplier_type}}
+			</div>
+		</div>
+		<div class="form-group  field-added">
+			<label for="added">
+				Added
+			</label>
+			<div class="input-div">
+				{{formatDate edit_listing.createdAt "DD/MM/YYYY hh:mm A"}}
+			</div>
+		</div>
+		<div class="form-group  field-status">
+			<label for="status">
+				Status
+			</label>
+			<div class="input-div">
+			    <select id="status" name="status" class="form-control" data-type="array">
+			      <option value="active" {{optionIsSelected edit_listing.status "active"}}>Active</option>
+			      <option value="inactive" {{optionIsSelected edit_listing.status "inactive"}}>Inactive</option>
+			    </select>
+
+			</div>
+		</div>
+		<div class="form-group  field-expirationDate">
+			<label for="expirationDate">
+				Valid until
+			</label>
+			<input class="form-control" type="text" id="expirationDate" name="expirationDate" value="{{formatDate edit_listing.expirationDate "DD/MM/YYYY"}}"/>
+			<span id="help-text" class="help-block">
+				Date format DD/MM/YYYY
+			</span>
+		</div>
+		<div class="form-group  field-createdBy">
+			<label>Business listing created by
+			<a href="/admin/users/edit/{{admin_user._id}}">{{admin_user.profile.email}}</a>
+			</label>
+		</div>
+		<div class="form-group">
+			<div class="submit-div">
+				<button id="update_listing_status" class="btn btn-primary">
+					<span class="fa fa-check">
+					</span>
+					Save
+				</button>
+			</div>
+		</div>
+	</div>
+</template>
+<template name="AdminListingsEditEditForm">
+	<div class="">
+		<h2 id="component-title">
+			Edit Business Listing
+		</h2>
+		<br/>
+		<div class="">
+			{{> AdminListingsEditForm}}
+		</div>
+		<form id="form" role="form">
+			{{#if errorMessage}}
+			<div class="alert alert-warning">
+				{{errorMessage}}
+			</div>
+			{{/if}}
+
+			{{#if infoMessage}}
+			<div class="alert alert-success">
+				{{infoMessage}}
+			</div>
+			{{/if}}
+			<div class="form-group  field-company_name">
+				<label for="company_name">
+					Company Name
+				</label>
+				<div class="input-div">
+					<input type="text" name="company_name" value="{{edit_listing.company_name}}" class="form-control" autofocus="autofocus" required="required" data-type="string">
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-type">
+				<label for="type">
+					Are you a
+				</label>
+				<div class="input-div">
+					<select class="form-control" multiple name="type" data-type="string" autofocus="autofocus">
+					      <option value="consultant" selected="{{selectedMultiple edit_listing.type "consultant"}}">Consultant</option>
+					      <option value="contractor" selected="{{selectedMultiple edit_listing.type "contractor"}}">Contractor</option>
+					      <option value="supplier" selected="{{selectedMultiple edit_listing.type "supplier"}}">Supplier</option>
+					</select>
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-consultant_type">
+				<label for="consultant_type">
+					Consultant Type
+				</label>
+				<div class="input-div">
+					<select class="form-control" multiple name="consultant_type" data-type="string" autofocus="autofocus">
+						{{#each consultant_types}}
+						<option value="{{name}}" selected="{{selectedMultiple ../edit_listing.consultant_type name}}">
+							{{name}}
+						</option>
+						{{/each}}
+					</select>
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-contractor_type">
+				<label for="contractor_type">
+					Contractor Type
+				</label>
+				<div class="input-div">
+					<select class="form-control" multiple name="contractor_type" data-type="string" autofocus="autofocus">
+						{{#each contractor_types}}
+						<option value="{{name}}" selected="{{selectedMultiple ../edit_listing.contractor_type name}}">
+							{{name}}
+						</option>
+						{{/each}}
+					</select>
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-supplier_type">
+				<label for="supplier_type">
+					Supplier Type
+				</label>
+				<div class="input-div">
+					<select class="form-control" multiple name="supplier_type" data-type="string" autofocus="autofocus">
+						{{#each supplier_types}}
+							<optgroup label="{{name}}">
+								{{#each supplier_types}}
+									<option value="{{this}}" selected="{{selectedMultiple ../../edit_listing.supplier_type this}}">
+									{{this}}
+									</option>
+								{{/each}}
+							</optgroup>
+						{{/each}}
+					</select>
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-project_value">
+				<label for="minimum_project_value">
+					Minimum Project Value
+				</label>
+				<div class="input-div">
+					<select class="form-control" name="minimum_project_value" data-type="string">
+						{{#each project_value}}
+						<option value="{{value}}" selected="{{selected ../edit_listing.minimum_project_value value}}">
+							{{name}}
+						</option>
+						{{/each}}
+					</select>
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-project_value">
+				<label for="maximum_project_value">
+					Maximum Project Value
+				</label>
+				<div class="input-div">
+					<select class="form-control" name="maximum_project_value" data-type="string">
+						{{#each project_value}}
+						<option value="{{value}}" selected="{{selected ../edit_listing.maximum_project_value value}}">
+							{{name}}
+						</option>
+						{{/each}}
+					</select>
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-industry">
+				<label for="industry">
+					Industry
+				</label>
+				<div class="input-div">
+					<select class="form-control" multiple name="industry" data-type="string">
+						{{#each industry}}
+							<option value="{{name}}" selected="{{selectedMultiple ../edit_listing.industry name}}">
+							{{name}}
+							</option>
+						{{/each}}
+					</select>
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<!-- div class="form-group  field-industry_sub_sector">
+				<label for="industry_sub_sector">
+					Industry Sub Sector
+				</label>
+				<div class="input-div">
+					<select class="form-control" multiple name="industry_sub_sector" data-type="string">
+						{{#each industry}}
+						<optgroup label="{{name}}">
+							{{#each industry_sub_sector}}
+							<option value="{{this}}" selected="{{selectedMultiple ../../edit_listing.industry_sub_sector this}}">
+							{{this}}
+							</option>
+							{{/each}}
+						</optgroup>
+						{{/each}}
+					</select>
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div -->
+			<div class="form-group  field-project_team_location">
+				<label for="project_team_location">
+					Project Team Location
+				</label>
+				<div class="input-div">
+					<select class="form-control" multiple name="project_team_location" data-type="string">
+						{{#each project_team_location}}
+						<option value="{{name}}" selected="{{selectedMultiple ../edit_listing.project_team_location name}}">
+							{{name}}
+						</option>
+						{{/each}}
+					</select>
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-areas_serviced">
+				<label for="locations">
+					Areas Serviced
+				</label>
+				<div class="input-div">
+					<select class="form-control" multiple name="areas_serviced" data-type="string">
+						{{#each locations}}
+							<option value="{{state}}" selected="{{selectedMultiple ../edit_listing.areas_serviced state}}">
+							{{state}}
+							</option>
+						{{/each}}
+					</select>
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<button id="form-add-address-button" class="btn btn-success" type="submit">
+				<span class="fa fa-check">
+				</span>
+				Add Address
+			</button>
+			{{> AddressListingsViewTable}}
+			<div class="form-group  field-company_short_description">
+				<label for="company_short_description">
+					Short Description
+				</label>
+				<div class="input-div">
+					<textarea type="text" name="company_short_description" value="{{edit_listing.company_short_description}}" class="form-control" required="required" data-type="string"></textarea>
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-company_long_description">
+				<label for="company_long_description">
+					Long Description
+				</label>
+				<div class="input-div">
+					<textarea type="text" name="company_long_description" value="{{edit_listing.company_long_description}}" class="form-control" required="required" data-type="string"></textarea>
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group field-webiste">
+				<label for="website">
+					Website
+				</label>
+				<div class="input-div">
+					<input type="text" name="website" value="{{edit_listing.website}}" class="form-control" required="required" data-type="string">
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group field-company_email">
+				<label for="company_email">
+					Contact Email
+				</label>
+				<div class="input-div">
+					<input type="text" name="company_email" value="{{edit_listing.company_email}}" class="form-control" required="required" data-type="string">
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group field-acn_abn">
+				<label for="acn_abn">
+					ACN/ABN
+				</label>
+				<div class="input-div">
+					<input type="text" name="acn_abn" value="{{edit_listing.acn_abn}}" class="form-control" required="required" data-type="string">
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-insurance">
+				<label for="Insurance">
+					Insurance Coverage
+				</label>
+				<div class="input-div">
+					<input type="text" name="insurance" value="{{edit_listing.insurance}}" class="form-control" data-type="string">
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-accreditations">
+				<label for="Accreditations">
+					Accreditations
+				</label>
+				<div class="input-div">
+					<input type="text" name="accreditations" value="{{edit_listing.accreditations}}" class="form-control" data-type="string">
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="logo">
+					Company Logo
+				</label>
+				<div class="input-div">
+					{{> upload_bootstrap fileTypes='image/*' formData=myLogoData }}
+				</div>
+			</div>
+			<div class="form-group">
+				{{> uploadedInfo edit_listing.logo}}
+			</div>
+			<div class="form-group  field-images">
+				<label for="images">
+					Listing Images
+				</label>
+				<div class="input-div">
+					{{> upload_bootstrap fileTypes='image/*' formData=myFormData }}
+				</div>
+			</div>
+			<div class="form-group">
+				{{> uploadedInfo edit_listing.images}}
+			</div>
+
+			<div class="form-group">
+				<div class="submit-div">
+					<button id="form-submit-button" class="btn btn-success" type="submit">
+						<span class="fa fa-check">
+						</span>
+						Save
+					</button>
+					<a href="#" id="form-cancel-button" class="btn btn-default">
+						Cancel
+					</a>
+				</div>
+			</div>
+		</form>
+	</div>
+</template>
